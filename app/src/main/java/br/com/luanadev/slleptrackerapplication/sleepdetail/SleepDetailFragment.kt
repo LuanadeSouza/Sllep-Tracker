@@ -14,17 +14,6 @@ import br.com.luanadev.slleptrackerapplication.R
 import br.com.luanadev.slleptrackerapplication.database.SleepDatabase
 import br.com.luanadev.slleptrackerapplication.databinding.FragmentSleepDetailBinding
 
-
-
-/**
- * A simple [Fragment] subclass.
- * Activities that contain this fragment must implement the
- * [SleepDetailFragment.OnFragmentInteractionListener] interface
- * to handle interaction events.
- * Use the [SleepDetailFragment.newInstance] factory method to
- * create an instance of this fragment.
- *
- */
 class SleepDetailFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -50,6 +39,7 @@ class SleepDetailFragment : Fragment() {
         // give the binding object a reference to it.
         binding.sleepDetailViewModel = sleepDetailViewModel
 
+        // binding.setLifecycleOwner(this)
         binding.lifecycleOwner = this
 
         // Add an Observer to the state variable for Navigating when a Quality icon is tapped.

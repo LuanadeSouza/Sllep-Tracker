@@ -13,20 +13,8 @@ import br.com.luanadev.slleptrackerapplication.R
 import br.com.luanadev.slleptrackerapplication.database.SleepDatabase
 import br.com.luanadev.slleptrackerapplication.databinding.FragmentSleepQualityBinding
 
-
-/**
- * Fragment that displays a list of clickable icons,
- * each representing a sleep quality rating.
- * Once the user taps an icon, the quality is set in the current sleepNight
- * and the database is updated.
- */
 class SleepQualityFragment : Fragment() {
 
-    /**
-     * Called when the Fragment is ready to display content to the screen.
-     *
-     * This function uses DataBindingUtil to inflate R.layout.fragment_sleep_quality.
-     */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
