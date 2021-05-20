@@ -1,5 +1,7 @@
 package br.com.luanadev.slleptrackerapplication
 
+
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.room.Room
 import androidx.test.platform.app.InstrumentationRegistry
 import br.com.luanadev.slleptrackerapplication.database.SleepDatabase
@@ -9,8 +11,10 @@ import org.junit.Assert.assertEquals
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
+import org.junit.runner.RunWith
 import java.io.IOException
 
+@RunWith(AndroidJUnit4::class)
 class SleepDatabaseTest {
 
     private lateinit var sleepDao: SleepDao
@@ -33,7 +37,7 @@ class SleepDatabaseTest {
 
     @Test
     @Throws(Exception::class)
-    fun insertAndGetNight() {
+    suspend fun insertAndGetNight() {
         val night = SleepNightEntity()
         sleepDao.insert(night)
         val tonight = sleepDao.getTonight()

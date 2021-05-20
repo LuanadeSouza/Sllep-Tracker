@@ -1,42 +1,42 @@
 <resources>
-    <string name="app_name">Sllep Tracker </string>
-    <string name="sleep_tracker_fragment">SleepTrackerFragment</string>
-    <string name="sleep_quality_fragment">SleepQualityFragment</string>
+    <string name="app_name">Rastreador de Sono</string>
+    <string name="sleep_tracker_fragment">Rastreador de Sono</string>
+    <string name="sleep_quality_fragment">Qualidade do Sono</string>
 
     <!-- Button labels -->
-    <string name="start">Start</string>
-    <string name="stop">Stop</string>
-    <string name="clear">Clear</string>
+    <string name="start">Inicio</string>
+    <string name="stop">Parar</string>
+    <string name="clear">Limpar</string>
 
     <!-- contentDescription strings for quality icons -->
-    <string name="quality_0">Sleep Quality 0</string>
-    <string name="quality_1">Sleep Quality 1</string>
-    <string name="quality_2">Sleep Quality 2</string>
-    <string name="quality_3">Sleep Quality 3</string>
-    <string name="quality_4">Sleep Quality 4</string>
-    <string name="quality_5">Sleep Quality 5</string>
+    <string name="quality_0">Qualidade do Sono 0</string>
+    <string name="quality_1">Qualidade do Sono 1</string>
+    <string name="quality_2">Qualidade do Sono 2</string>
+    <string name="quality_3">Qualidade do Sono 3</string>
+    <string name="quality_4">Qualidade do Sono 4</string>
+    <string name="quality_5">Qualidade do Sono 5</string>
 
     <!-- Output to TextView styled with a little HTML -->
-    <string name="title"><![CDATA[<h3>HERE IS YOUR SLEEP DATA</h3>]]></string>
-    <string name="start_time"><![CDATA[<b>Start:</b>]]></string>
-    <string name="end_time"><![CDATA[<b>End:</b>]]></string>
-    <string name="quality"><![CDATA[<b>Quality:</b>]]></string>
-    <string name="hours_slept"><![CDATA[<b>Hours:Minutes:Seconds</b>]]></string>
+    <string name="title"><![CDATA[<h3>AQUI ESTÃO OS SEUS DADOS DO SONO</h3>]]></string>
+    <string name="start_time"><![CDATA[<b>Inicio:</b>]]></string>
+    <string name="end_time"><![CDATA[<b>Fim:</b>]]></string>
+    <string name="quality"><![CDATA[<b>Qualidade:</b>]]></string>
+    <string name="hours_slept"><![CDATA[<b>Horas:Minutos:Segundos</b>]]></string>
 
     <!-- Sleep quality strings -->
-    <string name="how_was_hour_sleep">How was your sleep?</string>
-    <string name="zero_very_bad">Very bad</string>
-    <string name="one_poor">Poor</string>
-    <string name="two_soso">So-so</string>
-    <string name="three_ok">OK</string>
+    <string name="how_was_hour_sleep">Como foi seu sono?</string>
+    <string name="zero_very_bad">Muito mal</string>
+    <string name="one_poor">Pobre</string>
+    <string name="two_soso">Mais ou menos</string>
+    <string name="three_ok">Bom</string>
     <string name="four_pretty_good">Pretty good</string>
-    <string name="five_excellent">Excellent!</string>
+    <string name="five_excellent">Excelente!</string>
 
     <!-- Toast to play after Clear button has been pressed -->
-    <string name="cleared_message">All your data is gone forever.</string>
-    <string name="header_text">Sleep Results</string>
-    <string name="close">Close</string>
-    <string name="minutes_length">%d minutes on %s</string>
-    <string name="hours_length">%d hours on %s</string>
-    <string name="seconds_length">%d seconds on %s</string>
+    <string name="cleared_message">Todos os seus dados seram apagados para sempre..</string>
+    <string name="header_text">SResultados do sono</string>
+    <string name="close">Fechar</string>
+    <string name="minutes_length">%d minutos em %s</string>
+    <string name="hours_length">%d horas em %s</string>
+    <string name="seconds_length">%d segundos em %s</string>
 </resources>
