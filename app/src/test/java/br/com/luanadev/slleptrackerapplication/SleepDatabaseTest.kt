@@ -4,9 +4,9 @@ package br.com.luanadev.slleptrackerapplication
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.room.Room
 import androidx.test.platform.app.InstrumentationRegistry
-import br.com.luanadev.slleptrackerapplication.database.SleepDatabase
-import br.com.luanadev.slleptrackerapplication.database.SleepDao
-import br.com.luanadev.slleptrackerapplication.database.SleepNightEntity
+import br.com.luanadev.slleptrackerapplication.data.database.SleepDatabase
+import br.com.luanadev.slleptrackerapplication.data.dao.SleepDao
+import br.com.luanadev.slleptrackerapplication.data.entity.SleepNightEntity
 import org.junit.Assert.assertEquals
 import org.junit.After
 import org.junit.Before

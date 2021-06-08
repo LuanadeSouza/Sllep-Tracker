@@ -2,8 +2,8 @@ package br.com.luanadev.slleptrackerapplication.sleeptracker
 
 import android.app.Application
 import androidx.lifecycle.*
-import br.com.luanadev.slleptrackerapplication.database.SleepDao
-import br.com.luanadev.slleptrackerapplication.database.SleepNightEntity
+import br.com.luanadev.slleptrackerapplication.data.dao.SleepDao
+import br.com.luanadev.slleptrackerapplication.data.entity.SleepNightEntity
 import br.com.luanadev.slleptrackerapplication.formatNights
 import kotlinx.coroutines.launch
 
@@ -14,7 +14,7 @@ class SleepTrackerViewModel(
 
     private var tonight = MutableLiveData<SleepNightEntity?>()
 
-    private val nights = database.getAllNights()
+     val nights = database.getAllNights()
 
     val nightsString = Transformations.map(nights) { nights ->
         formatNights(nights, application.resources)
@@ -33,12 +33,10 @@ class SleepTrackerViewModel(
     }
 
     private var _showSnackbarEvent = MutableLiveData<Boolean>()
-
     val showSnackBarEvent: LiveData<Boolean>
         get() = _showSnackbarEvent
 
     private val _navigateToSleepQuality = MutableLiveData<SleepNightEntity?>()
-
     val navigateToSleepQuality: MutableLiveData<SleepNightEntity?>
         get() = _navigateToSleepQuality
 

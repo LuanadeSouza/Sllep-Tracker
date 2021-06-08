@@ -5,8 +5,10 @@ import android.content.res.Resources
 import android.os.Build
 import android.text.Html
 import android.text.Spanned
+import android.widget.TextView
 import androidx.core.text.HtmlCompat
-import br.com.luanadev.slleptrackerapplication.database.SleepNightEntity
+import androidx.recyclerview.widget.RecyclerView
+import br.com.luanadev.slleptrackerapplication.data.entity.SleepNightEntity
 import java.text.SimpleDateFormat
 
 fun convertNumericQualityToString(quality: Int, resources: Resources): String {
@@ -57,3 +59,4 @@ fun formatNights(nights: List<SleepNightEntity>, resources: Resources): Spanned 
         HtmlCompat.fromHtml(sb.toString(), HtmlCompat.FROM_HTML_MODE_LEGACY)
     }
 }
+class TextItemViewHolder(val textView: TextView): RecyclerView.ViewHolder(textView)

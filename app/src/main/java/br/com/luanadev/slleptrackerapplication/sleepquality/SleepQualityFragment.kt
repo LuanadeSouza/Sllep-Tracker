@@ -4,42 +4,48 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import br.com.luanadev.slleptrackerapplication.R
-import br.com.luanadev.slleptrackerapplication.database.SleepDatabase
+import br.com.luanadev.slleptrackerapplication.data.database.SleepDatabase
 import br.com.luanadev.slleptrackerapplication.databinding.FragmentSleepQualityBinding
 import by.kirich1409.viewbindingdelegate.viewBinding
 
 class SleepQualityFragment : Fragment() {
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
 
-        // Get a reference to the binding object and inflate the fragment views.
-        val binding: FragmentSleepQualityBinding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_sleep_quality, container, false)
+    private val binding by viewBinding {
+        FragmentSleepQualityBinding.inflate(layoutInflater)
+    }
 
-        val application = requireNotNull(this.activity).application
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ) = binding.root
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initDataBase()
+    }
+
+    private fun initDataBase() {
         val arguments = SleepQualityFragmentArgs.fromBundle(requireArguments())
-
-        val dataSource = SleepDatabase.getInstance(application).sleepDao
-        val viewModelFactory = SleepQualityViewModelFactory(arguments.sleepNightKey, dataSource)
-        val sleepQualityViewModel =
+        val dataSource = context?.let { SleepDatabase.getInstance(it).sleepDao }
+        val viewModelFactory =
+            dataSource?.let { SleepQualityViewModelFactory(arguments.sleepNightKey, it) }
+        val sleepQualityViewModel = viewModelFactory?.let {
             ViewModelProvider(
-                this, viewModelFactory).get(SleepQualityViewModel::class.java)
+                this, it
+            ).get(SleepQualityViewModel::class.java)
+        }
+        binding.lifecycleOwner = viewLifecycleOwner
         binding.sleepQualityViewModel = sleepQualityViewModel
-        sleepQualityViewModel.navigateToSleepTracker.observe(this, Observer {
+        sleepQualityViewModel?.navigateToSleepTracker?.observe(viewLifecycleOwner, {
             if (it == true) {
                 this.findNavController().navigate(
-                    SleepQualityFragmentDirections.actionSleepQualityFragmentToSleepTrackerFragment())
-
+                    SleepQualityFragmentDirections.actionSleepQualityFragmentToSleepTrackerFragment()
+                )
                 sleepQualityViewModel.doneNavigating()
             }
         })
-
-        return binding.root
     }
 }

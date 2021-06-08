@@ -3,7 +3,7 @@ package br.com.luanadev.slleptrackerapplication.sleeptracker
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import br.com.luanadev.slleptrackerapplication.database.SleepDao
+import br.com.luanadev.slleptrackerapplication.data.dao.SleepDao
 
 class SleepTrackerViewModelFactory(
     private val dataSource: SleepDao,

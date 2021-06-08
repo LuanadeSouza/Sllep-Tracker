@@ -1,4 +1,4 @@
-package br.com.luanadev.slleptrackerapplication.database
+package br.com.luanadev.slleptrackerapplication.data.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

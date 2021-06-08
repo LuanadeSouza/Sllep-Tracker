@@ -2,7 +2,7 @@ package br.com.luanadev.slleptrackerapplication.sleepquality
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import br.com.luanadev.slleptrackerapplication.database.SleepDao
+import br.com.luanadev.slleptrackerapplication.data.dao.SleepDao
 
 class SleepQualityViewModelFactory(
     private val sleepNightKey: Long,
