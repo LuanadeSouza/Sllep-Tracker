@@ -1,4 +1,4 @@
-package br.com.luanadev.slleptrackerapplication.sleeptracker
+package br.com.luanadev.slleptrackerapplication.screens.sleeptracker
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -35,9 +34,9 @@ class SleepTrackerFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.sleepTrackerViewModel = sleepTrackerViewModel
         binding.sleepList.adapter = adapter
-        sleepTrackerViewModel.nights.observe(viewLifecycleOwner, Observer {
+        sleepTrackerViewModel.nights.observe(viewLifecycleOwner, {
             it?.let {
-                adapter.data = it
+                adapter.submitList(it)
             }
         })
         sleepTrackerViewModel.showSnackBarEvent.observe(viewLifecycleOwner, {
@@ -58,11 +57,6 @@ class SleepTrackerFragment : Fragment() {
                         .actionSleepTrackerFragmentToSleepQualityFragment(night.nightId)
                 )
                 sleepTrackerViewModel.doneNavigating()
-            }
-        })
-        sleepTrackerViewModel.nights.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                adapter.data = it
             }
         })
         return binding.root

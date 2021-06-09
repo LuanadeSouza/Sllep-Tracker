@@ -1,4 +1,4 @@
-package br.com.luanadev.slleptrackerapplication.sleepquality
+package br.com.luanadev.slleptrackerapplication.screens.sleepquality
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

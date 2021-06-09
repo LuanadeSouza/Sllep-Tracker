@@ -1,4 +1,4 @@
-package br.com.luanadev.slleptrackerapplication.sleeptracker
+package br.com.luanadev.slleptrackerapplication.screens.sleeptracker
 
 import android.app.Application
 import androidx.lifecycle.ViewModel

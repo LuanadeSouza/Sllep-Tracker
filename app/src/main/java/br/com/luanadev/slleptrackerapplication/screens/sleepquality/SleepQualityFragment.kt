@@ -1,4 +1,4 @@
-package br.com.luanadev.slleptrackerapplication.sleepquality
+package br.com.luanadev.slleptrackerapplication.screens.sleepquality
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -6,13 +6,13 @@
     <data>
         <variable
             name="sleepTrackerViewModel"
-            type="br.com.luanadev.slleptrackerapplication.sleeptracker.SleepTrackerViewModel" />
+            type="br.com.luanadev.slleptrackerapplication.screens.sleeptracker.SleepTrackerViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".sleeptracker.SleepTrackerFragment">
+        tools:context=".screens.sleeptracker.SleepTrackerFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/sleep_list"

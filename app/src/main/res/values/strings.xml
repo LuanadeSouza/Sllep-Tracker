@@ -26,7 +26,7 @@
     <!-- Sleep quality strings -->
     <string name="how_was_hour_sleep">Como foi seu sono?</string>
     <string name="zero_very_bad">Muito mal</string>
-    <string name="one_poor">Mal</string>
+    <string name="one_poor">Mau</string>
     <string name="two_soso">Mais ou menos</string>
     <string name="three_ok">Bom</string>
     <string name="four_pretty_good">Muito bom</string>
