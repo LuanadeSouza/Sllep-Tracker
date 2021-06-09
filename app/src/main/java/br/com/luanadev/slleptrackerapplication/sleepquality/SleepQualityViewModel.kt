@@ -16,6 +16,14 @@ class SleepQualityViewModel(
     val navigateToSleepTracker: LiveData<Boolean?>
         get() = _navigateToSleepTracker
 
+    private var _showSnackbarEvent = MutableLiveData<Boolean>()
+    val showSnackBarEvent: LiveData<Boolean>
+        get() = _showSnackbarEvent
+
+    fun doneShowingSnackbar() {
+        _showSnackbarEvent.value = false
+    }
+
     fun doneNavigating() {
         _navigateToSleepTracker.value = null
     }
@@ -26,6 +34,8 @@ class SleepQualityViewModel(
             tonight.sleepQuality = quality
             database.update(tonight)
             _navigateToSleepTracker.value = true
+            _showSnackbarEvent.value = true
+
         }
     }
 }

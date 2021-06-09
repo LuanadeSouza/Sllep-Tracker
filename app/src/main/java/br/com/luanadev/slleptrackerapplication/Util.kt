@@ -10,6 +10,31 @@ import androidx.core.text.HtmlCompat
 import androidx.recyclerview.widget.RecyclerView
 import br.com.luanadev.slleptrackerapplication.data.entity.SleepNightEntity
 import java.text.SimpleDateFormat
+import java.util.*
+import java.util.concurrent.TimeUnit
+
+private val ONE_MINUTE_MILLIS = TimeUnit.MILLISECONDS.convert(1, TimeUnit.MINUTES)
+private val ONE_HOUR_MILLIS = TimeUnit.MILLISECONDS.convert(1, TimeUnit.HOURS)
+
+
+fun convertDurationToFormatted(startTimeMilli: Long, endTimeMilli: Long, res: Resources): String {
+    val durationMilli = endTimeMilli - startTimeMilli
+    val weekdayString = SimpleDateFormat("EEEE", Locale.getDefault()).format(startTimeMilli)
+    return when {
+        durationMilli < ONE_MINUTE_MILLIS -> {
+            val seconds = TimeUnit.SECONDS.convert(durationMilli, TimeUnit.MILLISECONDS)
+            res.getString(R.string.seconds_length, seconds, weekdayString)
+        }
+        durationMilli < ONE_HOUR_MILLIS -> {
+            val minutes = TimeUnit.MINUTES.convert(durationMilli, TimeUnit.MILLISECONDS)
+            res.getString(R.string.minutes_length, minutes, weekdayString)
+        }
+        else -> {
+            val hours = TimeUnit.HOURS.convert(durationMilli, TimeUnit.MILLISECONDS)
+            res.getString(R.string.hours_length, hours, weekdayString)
+        }
+    }
+}
 
 fun convertNumericQualityToString(quality: Int, resources: Resources): String {
     var qualityString = resources.getString(R.string.three_ok)
@@ -53,10 +78,13 @@ fun formatNights(nights: List<SleepNightEntity>, resources: Resources): Spanned 
             }
         }
     }
-    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        Html.fromHtml(sb.toString(), Html.FROM_HTML_MODE_LEGACY)
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        return Html.fromHtml(sb.toString(), Html.FROM_HTML_MODE_LEGACY)
     } else {
-        HtmlCompat.fromHtml(sb.toString(), HtmlCompat.FROM_HTML_MODE_LEGACY)
+        @Suppress("DEPRECATION")
+        return Html.fromHtml(sb.toString())
     }
 }
-class TextItemViewHolder(val textView: TextView): RecyclerView.ViewHolder(textView)
+
+class TextItemViewHolder(private val textView: TextView) : RecyclerView.ViewHolder(textView)

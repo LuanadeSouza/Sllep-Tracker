@@ -26,14 +26,15 @@
     <!-- Sleep quality strings -->
     <string name="how_was_hour_sleep">Como foi seu sono?</string>
     <string name="zero_very_bad">Muito mal</string>
-    <string name="one_poor">Pobre</string>
+    <string name="one_poor">Mal</string>
     <string name="two_soso">Mais ou menos</string>
     <string name="three_ok">Bom</string>
-    <string name="four_pretty_good">Pretty good</string>
+    <string name="four_pretty_good">Muito bom</string>
     <string name="five_excellent">Excelente!</string>
 
     <!-- Toast to play after Clear button has been pressed -->
     <string name="cleared_message">Todos os seus dados seram apagados para sempre..</string>
+    <string name="add_message">Sono adicionado com sucesso</string>
     <string name="header_text">SResultados do sono</string>
     <string name="close">Fechar</string>
     <string name="minutes_length">%d minutos em %s</string>

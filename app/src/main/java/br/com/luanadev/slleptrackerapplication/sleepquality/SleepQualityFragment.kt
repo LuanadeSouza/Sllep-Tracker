@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import br.com.luanadev.slleptrackerapplication.R
 import br.com.luanadev.slleptrackerapplication.data.database.SleepDatabase
 import br.com.luanadev.slleptrackerapplication.databinding.FragmentSleepQualityBinding
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.google.android.material.snackbar.Snackbar
 
 class SleepQualityFragment : Fragment() {
 
@@ -24,10 +26,10 @@ class SleepQualityFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initDataBase()
+        init()
     }
 
-    private fun initDataBase() {
+    private fun init() {
         val arguments = SleepQualityFragmentArgs.fromBundle(requireArguments())
         val dataSource = context?.let { SleepDatabase.getInstance(it).sleepDao }
         val viewModelFactory =
@@ -45,6 +47,16 @@ class SleepQualityFragment : Fragment() {
                     SleepQualityFragmentDirections.actionSleepQualityFragmentToSleepTrackerFragment()
                 )
                 sleepQualityViewModel.doneNavigating()
+            }
+        })
+        sleepQualityViewModel?.showSnackBarEvent?.observe(viewLifecycleOwner, {
+            if (it == true) {
+                Snackbar.make(
+                    requireActivity().findViewById(android.R.id.content),
+                    getString(R.string.add_message),
+                    Snackbar.LENGTH_SHORT
+                ).show()
+                sleepQualityViewModel.doneShowingSnackbar()
             }
         })
     }
