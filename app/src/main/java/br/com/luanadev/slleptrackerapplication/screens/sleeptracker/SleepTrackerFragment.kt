@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import br.com.luanadev.slleptrackerapplication.R
 import br.com.luanadev.slleptrackerapplication.data.database.SleepDatabase
 import br.com.luanadev.slleptrackerapplication.databinding.FragmentSleepTrackerBinding
@@ -59,6 +59,11 @@ class SleepTrackerFragment : Fragment() {
                 sleepTrackerViewModel.doneNavigating()
             }
         })
+        val manager = GridLayoutManager(activity, 3, GridLayoutManager.VERTICAL, false)
+        // val manager = GridLayoutManager(activity, 5, GridLayoutManager.HORIZONTAL, false)
+
+        binding.sleepList.layoutManager = manager
+
         return binding.root
     }
 }
