@@ -9,8 +9,8 @@ import kotlinx.coroutines.launch
 
 class SleepQualityViewModel(
     private val sleepNightKey: Long = 0L,
-    val database: SleepDao
-) : ViewModel() {
+    val database: SleepDao)
+    : ViewModel() {
 
     private val _navigateToSleepTracker = MutableLiveData<Boolean?>()
     val navigateToSleepTracker: LiveData<Boolean?>
@@ -19,6 +19,7 @@ class SleepQualityViewModel(
     private var _showSnackbarEvent = MutableLiveData<Boolean>()
     val showSnackBarEvent: LiveData<Boolean>
         get() = _showSnackbarEvent
+
 
     fun doneShowingSnackbar() {
         _showSnackbarEvent.value = false
@@ -35,7 +36,6 @@ class SleepQualityViewModel(
             database.update(tonight)
             _navigateToSleepTracker.value = true
             _showSnackbarEvent.value = true
-
         }
     }
 }

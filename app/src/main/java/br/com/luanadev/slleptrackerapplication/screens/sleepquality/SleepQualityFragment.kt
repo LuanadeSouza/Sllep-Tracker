@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import br.com.luanadev.slleptrackerapplication.R
 import br.com.luanadev.slleptrackerapplication.data.database.SleepDatabase
 import br.com.luanadev.slleptrackerapplication.databinding.FragmentSleepQualityBinding
@@ -18,6 +19,7 @@ class SleepQualityFragment : Fragment() {
     private val binding by viewBinding {
         FragmentSleepQualityBinding.inflate(layoutInflater)
     }
+    val arguments: SleepQualityFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,8 +32,7 @@ class SleepQualityFragment : Fragment() {
     }
 
     private fun init() {
-        val arguments = SleepQualityFragmentArgs.fromBundle(requireArguments())
-        val dataSource = context?.let { SleepDatabase.getInstance(it).sleepDao }
+        val dataSource = context?.let { SleepDatabase.getInstace(it).sleepDao }
         val viewModelFactory =
             dataSource?.let { SleepQualityViewModelFactory(arguments.sleepNightKey, it) }
         val sleepQualityViewModel = viewModelFactory?.let {
@@ -41,6 +42,7 @@ class SleepQualityFragment : Fragment() {
         }
         binding.lifecycleOwner = viewLifecycleOwner
         binding.sleepQualityViewModel = sleepQualityViewModel
+
         sleepQualityViewModel?.navigateToSleepTracker?.observe(viewLifecycleOwner, {
             if (it == true) {
                 this.findNavController().navigate(

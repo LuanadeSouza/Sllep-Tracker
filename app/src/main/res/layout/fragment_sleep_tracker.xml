@@ -12,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".screens.sleeptracker.SleepTrackerFragment">
+        tools:context=".sleeptracker.SleepTrackerFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/sleep_list"
@@ -21,9 +21,7 @@
             app:layout_constraintBottom_toTopOf="@+id/clear_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/stop_button">
-
-        </androidx.recyclerview.widget.RecyclerView>
+            app:layout_constraintTop_toBottomOf="@+id/stop_button"/>
 
         <Button
             android:id="@+id/start_button"
@@ -31,8 +29,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_16"
-            android:onClick="@{() -> sleepTrackerViewModel.onStartTracking()}"
             android:enabled="@{sleepTrackerViewModel.startButtonVisible}"
+            android:onClick="@{() -> sleepTrackerViewModel.onStart()}"
             android:text="@string/start"
             app:layout_constraintBaseline_toBaselineOf="@id/stop_button"
             app:layout_constraintEnd_toStartOf="@+id/stop_button"
@@ -46,8 +44,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_16"
             android:layout_marginEnd="@dimen/spacing_16"
-            android:onClick="@{() -> sleepTrackerViewModel.onStopTracking()}"
             android:enabled="@{sleepTrackerViewModel.stopButtonVisible}"
+            android:onClick="@{() -> sleepTrackerViewModel.onStop()}"
             android:text="@string/stop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/start_button"
@@ -61,8 +59,8 @@
             android:layout_marginStart="@dimen/spacing_16"
             android:layout_marginEnd="@dimen/spacing_16"
             android:layout_marginBottom="@dimen/spacing_16"
-            android:onClick="@{() -> sleepTrackerViewModel.onClear()}"
             android:enabled="@{sleepTrackerViewModel.clearButtonVisible}"
+            android:onClick="@{() -> sleepTrackerViewModel.onClear()}"
             android:text="@string/clear"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

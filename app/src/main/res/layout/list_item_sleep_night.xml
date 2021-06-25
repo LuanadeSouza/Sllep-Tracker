@@ -8,13 +8,17 @@
         <variable
             name="sleep"
             type="br.com.luanadev.slleptrackerapplication.data.entity.SleepNightEntity" />
+        <variable
+            name="clickListener"
+            type="br.com.luanadev.slleptrackerapplication.screens.sleeptracker.SleepNightListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> clickListener.onClick(sleep)}">
 
-        <ImageView
+    <ImageView
             android:id="@+id/quality_image"
             android:layout_width="@dimen/icon_size"
             android:layout_height="@dimen/spacing_60"

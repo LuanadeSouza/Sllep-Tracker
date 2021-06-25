@@ -8,14 +8,13 @@ import br.com.luanadev.slleptrackerapplication.formatNights
 import kotlinx.coroutines.launch
 
 class SleepTrackerViewModel(
-    val database: SleepDao,
-    application: Application
-) : AndroidViewModel(application) {
+    dataSource: SleepDao,
+    application: Application) : ViewModel() {
 
+    val database = dataSource
     private var tonight = MutableLiveData<SleepNightEntity?>()
 
-     val nights = database.getAllNights()
-
+    val nights = database.getAllNights()
     val nightsString = Transformations.map(nights) { nights ->
         formatNights(nights, application.resources)
     }
@@ -32,20 +31,34 @@ class SleepTrackerViewModel(
         it?.isNotEmpty()
     }
 
-    private var _showSnackbarEvent = MutableLiveData<Boolean>()
-    val showSnackBarEvent: LiveData<Boolean>
+    private var _showSnackbarEvent = MutableLiveData<Boolean?>()
+
+    val showSnackBarEvent: LiveData<Boolean?>
         get() = _showSnackbarEvent
 
-    private val _navigateToSleepQuality = MutableLiveData<SleepNightEntity?>()
-    val navigateToSleepQuality: MutableLiveData<SleepNightEntity?>
+    private val _navigateToSleepQuality = MutableLiveData<SleepNightEntity>()
+
+    val navigateToSleepQuality: LiveData<SleepNightEntity>
         get() = _navigateToSleepQuality
 
     fun doneShowingSnackbar() {
-        _showSnackbarEvent.value = false
+        _showSnackbarEvent.value = null
     }
 
     fun doneNavigating() {
         _navigateToSleepQuality.value = null
+    }
+
+    private val _navigateToSleepDetail = MutableLiveData<Long>()
+    val navigateToSleepDetail
+        get() = _navigateToSleepDetail
+
+    fun onSleepNightClicked(id: Long) {
+        _navigateToSleepDetail.value = id
+    }
+
+    fun onSleepDetailNavigated() {
+        _navigateToSleepDetail.value = null
     }
 
     init {
@@ -78,16 +91,19 @@ class SleepTrackerViewModel(
         database.clear()
     }
 
-    fun onStartTracking() {
+    fun onStart() {
         viewModelScope.launch {
             val newNight = SleepNightEntity()
+
             insert(newNight)
+
             tonight.value = getTonightFromDatabase()
         }
     }
 
-    fun onStopTracking() {
+    fun onStop() {
         viewModelScope.launch {
+
             val oldNight = tonight.value ?: return@launch
             oldNight.endTimeMilli = System.currentTimeMillis()
             update(oldNight)

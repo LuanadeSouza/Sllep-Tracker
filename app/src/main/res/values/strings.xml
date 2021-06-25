@@ -35,7 +35,7 @@
     <!-- Toast to play after Clear button has been pressed -->
     <string name="cleared_message">Todos os seus dados seram apagados para sempre..</string>
     <string name="add_message">Sono adicionado com sucesso</string>
-    <string name="header_text">SResultados do sono</string>
+    <string name="header_text">Resultados do sono</string>
     <string name="close">Fechar</string>
     <string name="minutes_length">%d minutos em %s</string>
     <string name="hours_length">%d horas em %s</string>

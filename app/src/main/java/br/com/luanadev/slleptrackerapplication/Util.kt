@@ -6,7 +6,6 @@ import android.os.Build
 import android.text.Html
 import android.text.Spanned
 import android.widget.TextView
-import androidx.core.text.HtmlCompat
 import androidx.recyclerview.widget.RecyclerView
 import br.com.luanadev.slleptrackerapplication.data.entity.SleepNightEntity
 import java.text.SimpleDateFormat
@@ -19,7 +18,7 @@ private val ONE_HOUR_MILLIS = TimeUnit.MILLISECONDS.convert(1, TimeUnit.HOURS)
 
 fun convertDurationToFormatted(startTimeMilli: Long, endTimeMilli: Long, res: Resources): String {
     val durationMilli = endTimeMilli - startTimeMilli
-    val weekdayString = SimpleDateFormat("EEEE", Locale.getDefault()).format(startTimeMilli)
+    val weekdayString = SimpleDateFormat("EEEE MMM-dd-yyyy", Locale.getDefault()).format(startTimeMilli)
     return when {
         durationMilli < ONE_MINUTE_MILLIS -> {
             val seconds = TimeUnit.SECONDS.convert(durationMilli, TimeUnit.MILLISECONDS)

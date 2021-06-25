@@ -10,27 +10,21 @@ import br.com.luanadev.slleptrackerapplication.data.dao.SleepDao
 @Database(entities = [SleepNightEntity::class], version = 1, exportSchema = false)
 abstract class SleepDatabase : RoomDatabase() {
 
-    abstract val sleepDao: SleepDao
-
     companion object {
-        @Volatile
-        private var INSTANCE: SleepDatabase? = null
+        var sleepDatabase: SleepDatabase? = null
 
-        fun getInstance(context: Context): SleepDatabase {
-            synchronized(this) {
-                var instance = INSTANCE
-
-                if (instance == null) {
-                    instance = Room.databaseBuilder(
-                        context.applicationContext,
-                        SleepDatabase::class.java,
-                        "sleep_history_database"
-                    )
-                        .build()
-                    INSTANCE = instance
-                }
-                return instance
+        @Synchronized
+        fun getInstace(context: Context): SleepDatabase {
+            if (sleepDatabase == null) {
+                sleepDatabase = Room.databaseBuilder(
+                    context,
+                    SleepDatabase::class.java,
+                    "sleep_history_database"
+                ).build()
             }
+            return sleepDatabase!!
         }
     }
+
+    abstract val sleepDao: SleepDao
 }
